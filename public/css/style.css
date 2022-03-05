@@ -1,0 +1,14 @@
+.invalid-feedback{
+    color: red;
+}
+#footer {
+    position: fixed;  
+    background-color: rgb(253, 246, 246);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+.pd-100{
+    padding-bottom: 100px;
+}

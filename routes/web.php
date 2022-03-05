@@ -15,16 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/example', function ()  
- {      
-return "Hello javaTpoint";  
-}); 
+// Route::get('/example', function ()  
+//  {      
+// return "Hello javaTpoint";  
+// }); 
 
 // // Route::get('/user', 'UserController@index');
 
-Route::get('/home', 'User\UserController@index')->name('home_page');//controller wala user
+Route::get('/home', 'User\UserController@home')->name('home_page');//controller wala user
 
-Route::get('/signupForm', 'User\UserController@signupForm')->name('signup_form');//folder/controller/class name@function name "name" (i.e function name) 
-Route::post('user/store', ['uses'=>'user\UserController@store'])->name('user_store');
+Route::get('user/signupForm','User\UserController@signupForm')->name('signup_form');//folder/controller/class name@function name "name" (i.e function name) 
+// below formate follow when request is post
+Route::post('user/store', ['uses'=>'User\UserController@store'])->name('sigup_store');
 
-// Route::get('/LogInForm', 'User\UserController@LogIn_form')->name('LogIn_form');
+Route::get('user/loginForm', 'User\UserController@login')->name('login_form');//folder/controller/class name@function name "name" (i.e function name) 
+Route::post('user/authenticate', ['uses'=>'User\UserController@authenticate'])->name('authenticate');
+
+Route::get('logout', ['uses'=>'User\UserController@logout'])->name('logout');

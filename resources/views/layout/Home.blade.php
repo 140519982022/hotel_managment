@@ -14,6 +14,7 @@
     <body>    
         <!-- side bar  -->
         <!-- header of page -->
+        @include('include.navbar')
         @include('include.head')
         <!-- start of content -->
         <div class="main-panel">
@@ -24,7 +25,7 @@
         </div>
         <!-- end of content -->
     </body>
-    @include('include.custom_script')
+   
         <!-- page specific scripts -->
             @yield('pagespecificscripts')
     <!--end::Body-->
