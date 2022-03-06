@@ -1,24 +1,12 @@
-<!-- extends the layout file which inclue the all files -->
 @extends('layout.home')
 
 @section('content')
-<div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <!-- @check blank error -->
 <div class="row pd-100">
     <div class="col-md-12">
         <div class="panel panel-primary">
-            <div class="panel-heading">REGISTRATION FORM</div>
+            <div class="panel-heading">USER PROFLE FORM</div>
             <div class="panel-body">
-                <form method="post" action="{{route('sigup_store')}}" id="signup" role="form">
+                <form method="post" action="{{route('profile_Form')}}" id="signup" role="form">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -72,47 +60,22 @@
                                     @if ($errors->apply->has('dob'))
                                         <span class="invalid-feedback">{{ $errors->apply->first('dob') }}</span>
                                     @endif
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12"> 
-						<div class="form-group">
-                            <label for="last-name">Age</label>
-                            <input type="text" name="age" id="age" class="{{ ($errors->apply->has('age'))?'is-invalid form-control':'form-control' }}" id ="age" name="age" placeholder="Enter Your Age" value="<?= old('age'); ?>" maxlength="2">
-                            @if ($errors->apply->has('age'))
-                                <span class="invalid-feedback">{{ $errors->apply->first('age') }}</span>
-                            @endif
+                <div class="col-md-6">
+							<div class="form-group">
+								<label for="last-name">Age</label>
+								<input type="number" name="age" id="age" class="{{ ($errors->apply->has('age'))?'is-invalid form-control':'form-control' }}" id ="age" name="age" placeholder="Enter Your Age" value="<?= old('age'); ?>" maxlength="2">
+								@if ($errors->apply->has('age'))
+					                <span class="invalid-feedback">{{ $errors->apply->first('age') }}</span>
+								@endif
+							</div>
 						</div>
 					</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="email">Email</label><br>
-                            <input type="email" class="{{ ($errors->apply->has('email'))?'is-invalid form-control':'form-control' }}" id="email" name="email" placeholder="enter email" value = "<?= old('email') ?>">
-
-                            @if ($errors->apply->has('email'))
-                                <span class="invalid-feedback">{{ $errors->apply->first('email') }}</span>
-                            @endif 
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="password">Password</label><br>
-                            <input type="password" class="{{ ($errors->apply->has('password'))?'is-invalid form-control':'form-control' }}" id="password" name="password" placeholder="enter password" maxlength="8">
-
-                            @if ($errors->apply->has('password'))
-                                <span class="invalid-feedback">{{ $errors->apply->first('password') }}</span>
-                            @endif 
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="row">
+                    <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="mobile">mobile no.</label><br>
@@ -137,7 +100,6 @@
         </div>
     </div>
 </div>
-  
 @stop
 
 @section('pagespecificscripts')
@@ -154,4 +116,3 @@
 </script>
 <!-- jquery code ended  -->
 @stop
-

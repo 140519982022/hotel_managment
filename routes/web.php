@@ -32,3 +32,5 @@ Route::get('user/loginForm', 'User\UserController@login')->name('login_form');//
 Route::post('user/authenticate', ['uses'=>'User\UserController@authenticate'])->name('authenticate');
 
 Route::get('logout', ['uses'=>'User\UserController@logout'])->name('logout');
+
+Route::get('user/profile', ['uses'=>'User\UserController@profileForm'])->name('profile_form');

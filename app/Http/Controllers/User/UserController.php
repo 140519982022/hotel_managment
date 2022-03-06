@@ -46,7 +46,7 @@ class UserController extends Controller
       $userData['token'] = $userData['_token'];
       
       // check validation
-      $validator = Validator::make($userData, ['first_name' => 'required','last_name' => 'required','college_name' => 'required','branch_name' => 'required','password' => ['required', 'string', 'min:6'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'mobile'=>['required','numeric'],'dob'=>['required','date','before:tomorrow'],'gender'=>'required','password'=>'required'],
+      $validator = Validator::make($userData, ['first_name' => 'required','last_name' => 'required','age' => 'required','password' => ['required', 'string', 'min:6'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'mobile'=>['required','numeric'],'dob'=>['required','date','before:tomorrow'],'gender'=>'required','password'=>'required'],
          ['first_name.required' => 'Name is required.','password.required' => 'New password is required.','dob.required'=>'Please select date of birth.','mobile.required'=>'Please Enter 10 digit number.','gender.required'=>'Please Select Gender.']);
 
       /**
@@ -103,6 +103,11 @@ class UserController extends Controller
    //    die();
    return view('welcome')->render(); // user is folder and form is file name
   }
+  public function profileForm()
+  {
+   return view('profile.profileform')->render(); // user is folder and form is file name
+  }
+
 }
 
 

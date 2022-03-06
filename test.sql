@@ -56,21 +56,6 @@ INSERT INTO `blog` (`id`, `user_name`, `email`, `thought`, `created`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `dob` date NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `college_name` varchar(255) NOT NULL,
-  `branch_name` varchar(255) NOT NULL,
-  `Mobile` varchar(255) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
