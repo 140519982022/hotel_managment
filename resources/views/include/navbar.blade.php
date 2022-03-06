@@ -5,8 +5,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{route('home_page')}}">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
+      @auth 
+      <li><a href="{{route('user_index')}}">All User</a></li>
+      @endauth
     </ul>
     <ul class="nav navbar-nav navbar-right">
     @guest 
@@ -14,8 +15,7 @@
       <li><a href="{{route('signup_form')}}" id="show-form"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="{{route('login_form')}}" id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     @endguest
-    @auth 
-    
+    @auth     
      <!-- after login you are login on this web site -->
       <li><a href="{{route('logout')}}" id="logout"><span class="glyphicon glyphicon-log-in"></span>Logout({{auth()->user()->email}})</a></li>
     @endauth

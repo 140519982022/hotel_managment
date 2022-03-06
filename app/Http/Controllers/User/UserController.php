@@ -103,10 +103,7 @@ class UserController extends Controller
    //    die();
    return view('welcome')->render(); // user is folder and form is file name
   }
-  public function profileForm()
-  {
-   return view('profile.profileform')->render(); // user is folder and form is file name
-  }
+  
 
 }
 
