@@ -42,9 +42,12 @@ Route::group(['prefix' => 'user','middleware' => ['auth']],function(){
 			Route::get('profile/insert',['uses'=>'User\ProfileController@create'])->name('user_add');
 			Route::post('profile/store', ['uses'=>'User\ProfileController@store'])->name('user_store');
 			Route::get('profile/index',['uses'=>'User\ProfileController@index'])->name('user_index');
-			Route::post('profile/update{id}',['uses'=>'User\ProfileController@update'])->name('user_update');
-			Route::get('profile/edit{id}',['uses'=>'User\ProfileController@edit'])->name('user_edit');
+			Route::post('profile/update',['uses'=>'User\ProfileController@update'])->name('user_update');
+			Route::get('profile/edit',['uses'=>'User\ProfileController@edit'])->name('user_edit');
 			Route::get('profile/view{id}',['uses'=>'User\ProfileController@show'])->name('user_view');
 			Route::get('profile/delete{id}', ['uses'=>'User\ProfileController@destroy'])->name('user_destroy');
+
+			Route::get('profile-image', ['uses'=>'User\ProfileController@profilePicture'])->name('profile_image');
+			Route::post('profile-update', ['uses'=>'User\ProfileController@changeProfilePicture'])->name('profile_update');
 		/****** user crud end *******/
 });

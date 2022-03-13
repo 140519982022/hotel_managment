@@ -46,9 +46,9 @@ class ProfileController extends Controller
      * @param  int  $id 
      * @return \Illuminate\Http\Response 
      */  
-    public function edit($id)  
+    public function edit()  
     {  
-        $user = User::find(decrypt($id));  
+        $user = User::find(auth()->user()->id);  
         return view('profile.edit', compact('user')); 
     }  
   
@@ -59,11 +59,11 @@ class ProfileController extends Controller
      * @param  int  $id 
      * @return \Illuminate\Http\Response 
      */  
-    public function update(Request $request,$id)  
+    public function update(Request $request)  
     {  
         $userData = $request->except('_token');
         
-        $userDetails = User::find($id);
+        $userDetails = User::find(auth()->user()->id);
         $userData['dob'] = date('Y-m-d', strtotime($userData['dob']));// 22/02/2022 
         
         $validator = Validator::make($userData, ['first_name' => 'required','last_name' => 'required','age' => 'required','mobile'=>['required','numeric'],'dob'=>['required','date','before:tomorrow'],'gender'=>'required'],
@@ -80,7 +80,7 @@ class ProfileController extends Controller
             return \Redirect::back()->withInput();
         }
         
-    }  
+    }
   
     /** 
      * Remove the specified resource from storage. 
@@ -94,4 +94,41 @@ class ProfileController extends Controller
         $user->delete();
         return redirect()->route('user_index');     
     }  
+    /**
+     * View the profile page
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profilePicture()
+    {
+    	return view('profile.profilePicture')->render();
+    }
+
+    /**
+     * View the change profile page
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function changeProfilePicture(Request $request)
+    {
+        
+        if($request->hasFile('profile_pic')){
+
+            $profile_pic = $request->file('profile_pic');
+            $filename = time(). '.' . $profile_pic->getClientOriginalExtension();
+            $request->profile_pic->move(public_path('/images/profile_picture/'), $filename);
+            User::where('id',Auth()->user()->id)->update([
+                'profile_pic'=> $filename,
+            ]);
+            Session::flash('profile-picture-update', 'Profile Picture Update successfully!');
+            Session::flash('alert-class', 'alert-success');
+            return redirect()->back();
+        }else{
+            Session::flash('profile-picture-update', 'Profile Picture Not Updated!');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->back();
+        }
+    }
 }

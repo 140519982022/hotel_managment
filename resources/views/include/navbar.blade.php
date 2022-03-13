@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{route('home_page')}}">Home</a></li>
       @auth 
-      <li><a href="{{route('user_index')}}">All User</a></li>
+      <li><a href="{{route('user_edit')}}">Edit Profile</a></li>
       @endauth
     </ul>
     <ul class="nav navbar-nav navbar-right">
