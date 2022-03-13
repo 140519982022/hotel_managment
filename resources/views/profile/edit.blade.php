@@ -96,8 +96,8 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<button class="btn btn-primary" type="submit">Update</button>
-									<a href="{{route('profile_image')}}"><button class="btn btn-primary" type="button">Update profile</button></a>
-									
+									<!-- update profile picture button -->
+									<a href="{{route('profile_image')}}"><button class="btn btn-info" type="button">Update profile Picture</button></a>								
 								</div>
 							</div>
 						</div>								

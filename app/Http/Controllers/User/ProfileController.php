@@ -119,6 +119,7 @@ class ProfileController extends Controller
             $profile_pic = $request->file('profile_pic');
             $filename = time(). '.' . $profile_pic->getClientOriginalExtension();
             $request->profile_pic->move(public_path('/images/profile_picture/'), $filename);
+            // update profile picture name on data base
             User::where('id',Auth()->user()->id)->update([
                 'profile_pic'=> $filename,
             ]);

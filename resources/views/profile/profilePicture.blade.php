@@ -18,8 +18,12 @@
                     <div class="card-body">
                         <form action="{{route('profile_update')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" id="profile_pic" name="profile_pic">
-                            <input type="submit" class="btn btn-success" value="Upload">
+                            <div class="form-group">
+                                <input type="file" id="profile_pic" name="profile_pic">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Upload">
+                            </div>
                         </form>
                     </div>
                 </div>
