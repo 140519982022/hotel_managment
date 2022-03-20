@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\City;
-use App\Models\Country;
+use App\Models\States;
 use Auth;
 use Session;
 
@@ -19,22 +19,20 @@ use Session;
 class UserController extends Controller
 {
    public function index(){
-    //    echo "uvju";
-    //    die();
+
     return view('user.index')->render(); // user is folder and index is file name
    }
 
    public function signupForm(){
-      //    echo "uvju";
-      //    die();
       // $city = City::all();
       // echo "<pre>";
       // print_r($city);
       // die();
 
-      $city =DB::table('cities')->select('id','city_name')->get();
+      $cities = DB::table('cities')->select('id','city_name')->get();  
+      $states= DB::table('states')->select('id','state_name')->get();  
     
-      return view('user.form',['cities' => $city])->render(); // user is folder and form is file name
+      return view('user.form',compact('cities','states')); // user is folder and form is file name
    }
 
    /**
@@ -55,7 +53,7 @@ class UserController extends Controller
       $userData['token'] = $userData['_token'];
       
       // check validation
-      $validator = Validator::make($userData, ['first_name' => 'required','last_name' => 'required','age' => 'required','password' => ['required', 'string', 'min:6'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'mobile'=>['required','numeric'],'dob'=>['required','date','before:tomorrow'],'gender'=>'required','password'=>'required'],
+      $validator = Validator::make($userData, ['first_name' => 'required','last_name' => 'required','age' => 'required','password' => ['required', 'string', 'min:6'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'mobile'=>['required','numeric'],'dob'=>['required','date','before:tomorrow'],'gender'=>'required','password'=>'required','city'=>'required','state'=>'required'],
          ['first_name.required' => 'Name is required.','password.required' => 'New password is required.','dob.required'=>'Please select date of birth.','mobile.required'=>'Please Enter 10 digit number.','gender.required'=>'Please Select Gender.']);
 
       /**
