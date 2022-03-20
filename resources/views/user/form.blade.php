@@ -116,7 +116,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="city">City</label><br>
-                                <input type="text" class="{{ ($errors->apply->has('city'))?'is-invalid form-control':'form-control' }}" id="city" name="city" placeholder="enter email" value = "<?= old('email') ?>">
+                                <input type="text" class="{{ ($errors->apply->has('city'))?'is-invalid form-control':'form-control' }}" id="city" name="city" placeholder="enter city name" value = "<?= old('email') ?>">
 
                                 @if ($errors->apply->has('city'))
                                     <span class="invalid-feedback">{{ $errors->apply->first('city') }}</span>
@@ -126,8 +126,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="country">country</label><br>
-                                <input type="password" class="{{ ($errors->apply->has('country'))?'is-invalid form-control':'form-control' }}" id="country" name="country" placeholder="enter password" maxlength="8">
-
+                                <select name="country" id="country" class="{{ ($errors->apply->has('country'))?'is-invalid form-control':'form-control' }}">
+                                    <option  >--Select country--</option>
+                                    <option value="India">India</option>
+                                    <option value="America">America</option>
+                                    <option value="Chaina">Chaina</option>
+                                    <option value="Japan">Japan</option>
+                                </select>
+                            
                                 @if ($errors->apply->has('country'))
                                     <span class="invalid-feedback">{{ $errors->apply->first('country') }}</span>
                                 @endif 
