@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\City;
+use App\Models\Country;
 use Auth;
 use Session;
 
@@ -25,7 +27,14 @@ class UserController extends Controller
    public function signupForm(){
       //    echo "uvju";
       //    die();
-      return view('user.form')->render(); // user is folder and form is file name
+      // $city = City::all();
+      // echo "<pre>";
+      // print_r($city);
+      // die();
+
+      $city =DB::table('cities')->select('id','city_name')->get();
+    
+      return view('user.form',['cities' => $city])->render(); // user is folder and form is file name
    }
 
    /**
