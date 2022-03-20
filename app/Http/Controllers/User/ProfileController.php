@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\City;
+use App\Models\States;
 use Auth;
 use Session;
 
@@ -50,8 +52,9 @@ class ProfileController extends Controller
     {  
         $user = User::find(auth()->user()->id);  
          
-      $cities = DB::table('cities')->select('id','city_name')->get();  
-      $states= DB::table('states')->select('id','state_name')->get();  
+      $cities = City::get(['id','city_name']);  
+    //   $cities = DB::table('cities')->select('id','city_name')->get();  
+      $states= DB::table('states')->select('id','state_name')->get();
      return view('profile.edit', compact('user','cities','states')); 
 
     }  

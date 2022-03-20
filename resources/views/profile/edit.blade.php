@@ -1,6 +1,5 @@
 @extends('layout.home')
 @section('content')
-
 <div class="col-md-2"></div>			
 <div class="container pd-100">
 	<div class="col-md-9">
@@ -17,6 +16,11 @@
 					<!-- Alert message (end) -->
 					<form role="form" action="{{route('user_update')}}" method="post" id="store">
 						@csrf
+						<div class="row">
+							<div class="avatar avatar-xl">
+								<img src="{{asset('/images/profile_picture/'.auth()->user()->profile_pic)}}" alt="..." class="profile-picture">
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
@@ -99,8 +103,8 @@
                                     <select name="city" id="city" class="{{ ($errors->apply->has('city'))?'is-invalid form-control':'form-control' }}" value = "{{$user->city}}">
                                     <option value="">Select City</option>
                                     @foreach($cities as $city)
-                                    <option value="<?php echo $city[$user->city];?>">{{$city->city_name}}</option>
-                                    @endforeach                                    
+                                    <option value="{{ $city->id}}" {{($city->id == $user->city)? 'selected':''}}>{{$city->city_name}}</option>
+                                    @endforeach                                  
                                 </select>
                                 @if ($errors->apply->has('city'))
                                     <span class="invalid-feedback">{{ $errors->apply->first('city') }}</span>
@@ -110,11 +114,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="state">State</label><br>
-                                <select name="state" id="state" class="{{ ($errors->apply->has('state'))?'is-invalid form-control':'form-control' }}" value ="{{$user->state}}">
-									
+                                <select name="state" id="state" class="{{ ($errors->apply->has('state'))?'is-invalid form-control':'form-control' }}" value ="{{$user->state}}">									
                                     <option value="">Select States</option>
                                     @foreach($states as $state)
-                                    <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                    <option value="{{$state->id}}" {{($state->id == $user->state)? 'selected':''}}>{{$state->state_name}}</option>
                                     @endforeach
                                 </select>                            
                                 @if ($errors->apply->has('state'))
