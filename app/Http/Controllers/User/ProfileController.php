@@ -49,7 +49,11 @@ class ProfileController extends Controller
     public function edit()  
     {  
         $user = User::find(auth()->user()->id);  
-        return view('profile.edit', compact('user')); 
+         
+      $cities = DB::table('cities')->select('id','city_name')->get();  
+      $states= DB::table('states')->select('id','state_name')->get();  
+     return view('profile.edit', compact('user','cities','states')); 
+
     }  
   
     /** 

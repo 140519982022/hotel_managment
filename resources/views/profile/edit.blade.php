@@ -92,6 +92,37 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="city">City</label><br>
+                                    <select name="city" id="city" class="{{ ($errors->apply->has('city'))?'is-invalid form-control':'form-control' }}" value = "{{$user->city}}">
+                                    <option value="">Select City</option>
+                                    @foreach($cities as $city)
+                                    <option value="<?php echo $city[$user->city];?>">{{$city->city_name}}</option>
+                                    @endforeach                                    
+                                </select>
+                                @if ($errors->apply->has('city'))
+                                    <span class="invalid-feedback">{{ $errors->apply->first('city') }}</span>
+                                @endif 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="state">State</label><br>
+                                <select name="state" id="state" class="{{ ($errors->apply->has('state'))?'is-invalid form-control':'form-control' }}" value ="{{$user->state}}">
+									
+                                    <option value="">Select States</option>
+                                    @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                    @endforeach
+                                </select>                            
+                                @if ($errors->apply->has('state'))
+                                    <span class="invalid-feedback">{{ $errors->apply->first('state') }}</span>
+                                @endif 
+                            </div>
+                        </div>
+                    </div>     
 						<div class="row">						
 							<div class="col-md-6">
 								<div class="form-group">
